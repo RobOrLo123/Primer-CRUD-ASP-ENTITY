@@ -223,3 +223,4 @@ C:\Users\robet\source\repos\CRUDASP\CRUDASP\obj\Debug\net10.0\refint\CRUDASP.dll
 C:\Users\robet\source\repos\CRUDASP\CRUDASP\obj\Debug\net10.0\CRUDASP.pdb
 C:\Users\robet\source\repos\CRUDASP\CRUDASP\obj\Debug\net10.0\CRUDASP.genruntimeconfig.cache
 C:\Users\robet\source\repos\CRUDASP\CRUDASP\obj\Debug\net10.0\ref\CRUDASP.dll
+C:\Users\robet\source\repos\CRUDASP\CRUDASP\obj\Debug\net10.0\CRUDASP.sourcelink.json

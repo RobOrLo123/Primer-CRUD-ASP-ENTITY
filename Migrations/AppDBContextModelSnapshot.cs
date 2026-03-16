@@ -24,13 +24,11 @@ namespace CRUDASP.Migrations
 
             modelBuilder.Entity("CRUDASP.Models.Empleado", b =>
                 {
-                    b.Property<int>("IdEmpleado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Cedula")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEmpleado"));
-
-                    b.Property<DateOnly>("FechaIngreso")
+                    b.Property<DateOnly>("FechaContrato")
                         .HasColumnType("date");
 
                     b.Property<string>("NombreCompleto")
@@ -41,12 +39,20 @@ namespace CRUDASP.Migrations
                     b.Property<bool>("activo")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("administrador")
+                        .HasColumnType("bit");
+
                     b.Property<string>("correo")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("IdEmpleado");
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Cedula");
 
                     b.ToTable("empleado", (string)null);
                 });

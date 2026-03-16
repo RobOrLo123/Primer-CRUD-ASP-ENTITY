@@ -10,6 +10,10 @@
         <h2>Nuevo empleado</h2>
         <form asp-controller="Empleado" asp-action="Nuevo" method="POST">
             <div class="mb-3">
+                <label>Cedula</label>
+                <input class="form-control" asp-for="Cedula" type="text" />
+            </div>
+            <div class="mb-3">
                 <label>Nombre Completo</label>
                 <input class="form-control" asp-for="NombreCompleto" type="text" />
             </div>
@@ -18,12 +22,20 @@
                 <input class="form-control" asp-for="correo" type="text" />
             </div>
             <div class="mb-3">
+                <label>Contraseña</label>
+                <input class="form-control" asp-for="password" type="text" />
+            </div>
+            <div class="mb-3">
                 <label>Fecha de contrato</label>
-                <input class="form-control" asp-for="FechaIngreso" type="date" />
+                <input class="form-control" asp-for="FechaContrato" type="date" />
             </div>
             <div class="mb-3">
                 <label class="form-check-label" for="chkActivo">Activo</label>
                 <input class="form-check-input" asp-for="activo" type="checkbox" id="chkActivo" />
+            </div>
+            <div class="mb-3">
+                <label class="form-check-label" for="chkActivoAdmin">Administrador</label>
+                <input class="form-check-input" asp-for="administrador" type="checkbox" id="chkActivoAdmin" />
             </div>
             <div class="mb-3">
                 <button class="btn btn-primary" type="submit">Guardar</button>

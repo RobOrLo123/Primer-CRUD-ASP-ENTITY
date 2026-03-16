@@ -33,9 +33,9 @@ namespace CRUDASP.Controllers
             return RedirectToAction(nameof(Lista));
         }
 
-        public async Task<IActionResult> Editar(int id)
+        public async Task<IActionResult> Editar(string id)
         {
-            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.IdEmpleado == id);
+            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.Cedula == id);
             return View(empleado);
         }
 
@@ -47,9 +47,9 @@ namespace CRUDASP.Controllers
             return RedirectToAction(nameof(Lista));
         }
 
-        public async Task<IActionResult> Eliminar(int id)
+        public async Task<IActionResult> Eliminar(string id)
         {
-            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.IdEmpleado == id);
+            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.Cedula == id);
             _appDbContext.Empleados.Remove(empleado);
             await _appDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));

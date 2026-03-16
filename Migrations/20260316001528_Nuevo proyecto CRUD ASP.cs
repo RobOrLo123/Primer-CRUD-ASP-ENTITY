@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CRUDASP.Migrations
 {
     /// <inheritdoc />
-    public partial class Primeramigracion : Migration
+    public partial class NuevoproyectoCRUDASP : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,16 +15,17 @@ namespace CRUDASP.Migrations
                 name: "empleado",
                 columns: table => new
                 {
-                    IdEmpleado = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cedula = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     NombreCompleto = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     correo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FechaIngreso = table.Column<DateOnly>(type: "date", nullable: false),
-                    activo = table.Column<bool>(type: "bit", nullable: false)
+                    password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FechaContrato = table.Column<DateOnly>(type: "date", nullable: false),
+                    activo = table.Column<bool>(type: "bit", nullable: false),
+                    administrador = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_empleado", x => x.IdEmpleado);
+                    table.PrimaryKey("PK_empleado", x => x.Cedula);
                 });
         }
 

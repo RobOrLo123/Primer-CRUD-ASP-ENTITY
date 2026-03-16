@@ -12,11 +12,13 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Cedula</th>
                     <th>Nombre Completo</th>
                     <th>Correo</th>
+                    <th>Contraseña</th>
                     <th>Fecha de ingreso</th>
                     <th>Activo</th>
+                    <th>Administrador</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,14 +27,16 @@
                 @foreach(var item in Model)
                 {
                     <tr>
-                        <td>@item.IdEmpleado</td>
+                        <td>@item.Cedula</td>
                         <td>@item.NombreCompleto</td>
                         <td>@item.correo</td>
-                        <td>@item.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                        <td>@item.password</td>
+                        <td>@item.FechaContrato.ToString("dd/MM/yyyy")</td>
                         <td>@(item.activo ? "Si": "No")</td>
+                        <td>@(item.administrador ? "Si": "No")</td>
                         <td>
-                            <a asp-controller="Empleado" asp-action="Editar" asp-route-id="@item.IdEmpleado" class="btn btn-primary">Editar</a>
-                            <a asp-controller="Empleado" asp-action="Eliminar" asp-route-id="@item.IdEmpleado" class="btn btn-danger" onclick="return confirmar()">Eliminar</a>
+                            <a asp-controller="Empleado" asp-action="Editar" asp-route-id="@item.Cedula" class="btn btn-primary">Editar</a>
+                            <a asp-controller="Empleado" asp-action="Eliminar" asp-route-id="@item.Cedula" class="btn btn-danger" onclick="return confirmar()">Eliminar</a>
                         </td>
                     </tr>
                 }
