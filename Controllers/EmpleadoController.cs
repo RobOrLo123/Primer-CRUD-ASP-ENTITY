@@ -25,6 +25,7 @@ namespace CRUDASP.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Nuevo(Empleado empleado)
         {
