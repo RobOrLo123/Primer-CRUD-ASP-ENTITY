@@ -3,20 +3,32 @@
 *@
 @{
 }
-@model List<CRUDASP.Models.Empleado>;
+@using System.Security.Claims;
+@model List<CRUDASP.Models.Usuario>;
+<div class="text-center">
+
+
+    @if (User.Identity!.IsAuthenticated)
+{
+    <h1 class="display-4">Welcome @User.Claims.Where(f => f.Type == ClaimTypes.GivenName).Select(f => f.Value).SingleOrDefault()
+                                  @User.Claims.Where(l => l.Type == ClaimTypes.Name).Select(l => l.Value).SingleOrDefault()
+            
+    </h1>
+}
+</div>
 <div class="row">
 
     <div class="col-sm-8 offset-sm-2">
         <h2>Lista de empleados</h2>
-        <a asp-controller="Empleado" asp-action="Nuevo" class="btn btn-success mb-3">Agregar empleado</a>
+        <a asp-controller="Usuario" asp-action="Nuevo" class="btn btn-success mb-3">Agregar empleado</a>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Cedula</th>
-                    <th>Nombre Completo</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Correo</th>
                     <th>Contraseña</th>
-                    <th>Fecha de ingreso</th>
                     <th>Activo</th>
                     <th>Administrador</th>
                     <th></th>
@@ -28,15 +40,15 @@
                 {
                     <tr>
                         <td>@item.Cedula</td>
-                        <td>@item.NombreCompleto</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Apellido</td>
                         <td>@item.correo</td>
                         <td>@item.password</td>
-                        <td>@item.FechaContrato.ToString("dd/MM/yyyy")</td>
                         <td>@(item.activo ? "Si": "No")</td>
                         <td>@(item.administrador ? "Si": "No")</td>
                         <td>
-                            <a asp-controller="Empleado" asp-action="Editar" asp-route-id="@item.Cedula" class="btn btn-primary">Editar</a>
-                            <a asp-controller="Empleado" asp-action="Eliminar" asp-route-id="@item.Cedula" class="btn btn-danger" onclick="return confirmar()">Eliminar</a>
+                            <a asp-controller="Usuario" asp-action="Editar" asp-route-id="@item.Cedula" class="btn btn-primary">Editar</a>
+                            <a asp-controller="Usuario" asp-action="Eliminar" asp-route-id="@item.Cedula" class="btn btn-danger" onclick="return confirmar()">Eliminar</a>
                         </td>
                     </tr>
                 }

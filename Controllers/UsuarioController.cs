@@ -2,21 +2,24 @@
 using CRUDASP.Data;
 using CRUDASP.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CRUDASP.Controllers
 {
-    public class EmpleadoController : Controller
+
+    [Authorize(Roles = "Admin")]
+    public class UsuarioController : Controller
     {
 
         private readonly AppDBContext _appDbContext;
-        public EmpleadoController(AppDBContext appDbContext)
+        public UsuarioController(AppDBContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
         public async Task<IActionResult> Lista()
         {
 
-            List<Empleado> lista = await _appDbContext.Empleados.ToListAsync();
+            List<Usuario> lista = await _appDbContext.Usuario.ToListAsync();
             return View(lista);
         }
         public IActionResult Nuevo()
@@ -27,31 +30,31 @@ namespace CRUDASP.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Nuevo(Empleado empleado)
+        public async Task<IActionResult> Nuevo(Usuario empleado)
         {
-            await _appDbContext.Empleados.AddAsync(empleado);
+            await _appDbContext.Usuario.AddAsync(empleado);
             await _appDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));
         }
 
         public async Task<IActionResult> Editar(string id)
         {
-            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.Cedula == id);
+            Usuario empleado = await _appDbContext.Usuario.FirstAsync(e => e.Cedula == id);
             return View(empleado);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Editar(Empleado empleado)
+        public async Task<IActionResult> Editar(Usuario empleado)
         {
-            _appDbContext.Empleados.Update(empleado);
+            _appDbContext.Usuario.Update(empleado);
             await _appDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));
         }
 
         public async Task<IActionResult> Eliminar(string id)
         {
-            Empleado empleado = await _appDbContext.Empleados.FirstAsync(e => e.Cedula == id);
-            _appDbContext.Empleados.Remove(empleado);
+            Usuario empleado = await _appDbContext.Usuario.FirstAsync(e => e.Cedula == id);
+            _appDbContext.Usuario.Remove(empleado);
             await _appDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Lista));
         }

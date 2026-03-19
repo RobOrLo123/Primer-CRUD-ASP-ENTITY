@@ -1,5 +1,7 @@
 using CRUDASP.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,14 @@ builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaSQL"));
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
+{
+    options.LoginPath = "/Acceso/Login";
+    options.AccessDeniedPath = "/Home/Index";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,13 +30,15 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Acceso}/{action=Registrarse}/{id?}")
+    pattern: "{controller=Acceso}/{action=Login}/{id?}")
     .WithStaticAssets();
 
 

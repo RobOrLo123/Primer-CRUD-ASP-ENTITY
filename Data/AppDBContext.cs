@@ -11,22 +11,23 @@ namespace CRUDASP.Data
 
         }
 
-        public DbSet<Empleado> Empleados { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Empleado>(tb =>
+            modelBuilder.Entity<Usuario>(tb =>
             {
                 tb.HasKey(col => col.Cedula);
                 tb.Property(col => col.Cedula).HasMaxLength(50);
 
-                tb.Property(col => col.NombreCompleto).HasMaxLength(50);
+                tb.Property(col => col.Nombre).HasMaxLength(50);
+                tb.Property(col => col.Apellido).HasMaxLength(50);
                 tb.Property(col => col.correo).HasMaxLength(50);
                 tb.Property(col => col.password).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Empleado>().ToTable("empleado");
+            modelBuilder.Entity<Usuario>().ToTable("usuario");
         }
 
     }
